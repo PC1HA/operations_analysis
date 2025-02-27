@@ -30,6 +30,7 @@ def get_expenses_by_category(df: pd.DataFrame, category: str, date: str = None) 
     Returns:
         str: JSON-ответ с найденными транзакциями.
     """
+    print("Смотрим ваши траты...")
     if date is None:
         date = datetime.now().strftime('%Y-%m-%d')
 
@@ -44,6 +45,7 @@ def get_expenses_by_category(df: pd.DataFrame, category: str, date: str = None) 
 
     if filtered_transactions.empty:
         logging.warning("Не найдено транзакций по категории: %s за последние три месяца", category)
+        return '[]'
     else:
         logging.info("Найдено %d транзакций по категории: %s за последние три месяца", len(filtered_transactions),
                      category)

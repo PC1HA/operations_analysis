@@ -27,6 +27,7 @@ def load_transactions_from_excel(file_path: str) -> pd.DataFrame:
     Returns:
         pd.DataFrame: Датафрейм с данными транзакций.
     """
+    print("Листаем файлы...")
     try:
         df = pd.read_excel(file_path)
         logging.info("Данные успешно загружены из файла: %s", file_path)
@@ -47,6 +48,7 @@ def search_transactions(df: pd.DataFrame, query: str) -> str:
     Returns:
         str: JSON-ответ с найденными транзакциями.
     """
+    print("Ищу по вашему запросу...")
     query_lower = query.lower()
     logging.info("Поиск транзакций по запросу: %s", query)
 
@@ -56,7 +58,9 @@ def search_transactions(df: pd.DataFrame, query: str) -> str:
         ]
 
     if filtered_transactions.empty:
+        print('Не смог найти такого...')
         logging.warning("Не найдено транзакций по запросу: %s", query)
+        return '[]'
     else:
         logging.info("Найдено %d транзакций по запросу: %s", len(filtered_transactions), query)
 

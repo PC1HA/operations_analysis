@@ -29,6 +29,8 @@ def get_all_currencies(api_key: str) -> List[str]:
     Returns:
         List[str]: Список всех доступных валют.
     """
+    print("Смотрим, какие валюты есть...")
+
     url = "https://api.apilayer.com/exchangerates_data/symbols"
     headers = {
         "apikey": api_key
@@ -56,6 +58,8 @@ def get_exchange_rate(base_currency: str = 'RUB') -> List[Dict[str, Union[str, N
     Returns:
         List[Dict[str, Union[str, None]]]: Список словарей с курсами обмена для целевых валют.
     """
+    print("Получаем данные о курсе валют...")
+
     target_currency = ['USD', 'EUR', 'CNY']
     api_key = os.getenv('API_KEY')
 
@@ -108,6 +112,8 @@ def get_stock_prices(stock_symbols: List[str]) -> List[Dict[str, Any]]:
     :param stock_symbols: Список символов акций, для которых необходимо получить цены.
     :return: Список словарей, каждый из которых содержит символ акции и его последнюю цену.
     """
+    print("Получаем данные об ценах на акции...")
+
     stock_prices = []
     api_key = os.getenv('ALPHA_VANTAGE_API_KEY')
 

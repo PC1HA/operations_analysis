@@ -5,11 +5,18 @@ import pandas as pd
 from datetime import datetime
 import json
 
-if __name__ == "__main__":
+def home():
     transactions = pd.read_excel('C:/Users/PC1HA/My_Projects/operations analysis/data/my_operations.xls')
 
     greeting = get_greeting(datetime.now())
-    cards = get_card_data(transactions)
+    print("Хотите посмотреть транзакции по картам по конкретной дате?")
+    question = input('да или нет: ' )
+    if question.lower() == 'да':
+        analysis_date = input("Введите дату в формате дд.мм.гггг:" )
+        cards = get_card_data(transactions, analysis_date)
+    else:
+        cards = get_card_data(transactions)
+
     top_transactions = get_top_transactions(transactions)
     currency_rates = get_exchange_rate()
     stock_prices = get_stock_prices(["AAPL", "AMZN", "GOOGL", "MSFT", "TSLA"])
@@ -21,6 +28,7 @@ if __name__ == "__main__":
         "currency_rates" : currency_rates,
         "stock_prices": stock_prices
     }
+    print(data)
     directory  = "C:/Users/PC1HA/My_Projects/operations analysis/data"
     file_path = os.path.join(directory, "data_home.json")
     json_str = json.dumps(data, ensure_ascii=False, indent=4)

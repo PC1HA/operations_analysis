@@ -53,10 +53,16 @@ def get_card_data(transactions: pd.DataFrame, analysis_date: Optional[str] = Non
     :param analysis_date: Дата для анализа в формате 'дд.мм.гггг'. Если не указана, используется текущая дата.
     :return: Словарь с итогами расходов и кешбека по картам.
     """
+    print("Анализируем данные...")
+
     if analysis_date is None:
         analysis_date = pd.Timestamp.now()
     else:
-        analysis_date = pd.to_datetime(analysis_date, format='%d.%m.%Y')
+        try:
+            analysis_date = pd.to_datetime(analysis_date, format='%d.%m.%Y')
+        except ValueError:
+            print("Неверный формат даты. Используется текущая дата.")
+            analysis_date = pd.Timestamp.now()
 
     start_date = analysis_date.replace(day=1)
     end_date = analysis_date
@@ -93,6 +99,7 @@ def get_top_transactions(transactions: pd.DataFrame) -> List[Dict[str, Any]]:
     :param transactions: DataFrame с данными о транзакциях.
     :return: Список словарей с данными о топ-5 транзакциях.
     """
+    print("Выстраиваем топ транзакций...")
     top_transactions = transactions.nlargest(5, 'Сумма платежа')
     result = top_transactions[['Дата платежа', 'Сумма платежа', 'Категория', 'Описание']].to_dict(orient='records')
 

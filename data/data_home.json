@@ -1,5 +1,5 @@
 {
-    "greeting": "Доброе утро",
+    "greeting": "Добрый день",
     "cards": {
         "4615": {
             "total_spent": 0,
@@ -45,20 +45,25 @@
     "currency_rates": [
         {
             "currency": "USD",
-            "rate": 90.74
+            "rate": 86.79
         },
         {
             "currency": "EUR",
-            "rate": 95.17
+            "rate": 90.95
         },
         {
             "currency": "CNY",
-            "rate": 12.51
+            "rate": 11.93
         },
         {
-            "currency": "SEK",
-            "rate": 8.47
+            "currency": "RUB",
+            "rate": 1.0
         }
     ],
-    "stock_prices": []
+    "stock_prices": [
+        {
+            "stock": "AAPL",
+            "price": 239.67
+        }
+    ]
 }
